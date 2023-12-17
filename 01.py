@@ -107,10 +107,10 @@ class AddressBook(UserDict):
         contacts = defaultdict(list)
         today = datetime.datetime.today().date()
         for name, record in self.data.items():
-            birthday = record.birthday.value
+            birthday = record.birthday
             if not birthday:
                 continue
-            birthday = datetime.datetime.strptime(birthday, '%d.%m.%Y').date()
+            birthday = datetime.datetime.strptime(birthday.value, '%d.%m.%Y').date()
             birthday_this_year = birthday.replace(year=today.year)
             if birthday_this_year < today:
                 birthday_this_year = birthday_this_year.replace(year=today.year + 1)
